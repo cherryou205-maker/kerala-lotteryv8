@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerala Mega Jackpot – Official Lottery</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #050a1a;
+    --navy2: #0a1128;
+    --gold: #f5c518;
+    --gold2: #e6a800;
+    --gold-glow: rgba(245,197,24,0.18);
+    --crimson: #e8334a;
+    --crimson2: #c41c30;
+    --white: #ffffff;
+    --silver: #c8d0e0;
+    --card-bg: #0d1630;
+    --card-border: rgba(245,197,24,0.22);
+    --selected: #f5c518;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── STAR BG ─── */
+  .stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: relative; z-index: 10;
+    background: linear-gradient(180deg, #070d1e 0%, transparent 100%);
+    text-align: center;
+    padding: 0;
+  }
+
+  .header-ribbon {
+    background: linear-gradient(90deg, var(--crimson2), var(--crimson), var(--crimson2));
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    animation: ribbonPulse 2s ease-in-out infinite;
+  }
+  @keyframes ribbonPulse {
+    0%,100% { opacity:1; } 50% { opacity:.8; }
+  }
+
+  .header-main {
+    padding: 28px 16px 20px;
+  }
+
+  .crown-icon {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 12px var(--gold));
+    animation: crownFloat 3s ease-in-out infinite;
+  }
+  @keyframes crownFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .site-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 6vw, 46px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), #fff6c0, var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    text-shadow: none;
+    filter: drop-shadow(0 0 20px rgba(245,197,24,0.3));
+  }
+
+  .site-subtitle {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-top: 6px;
+    opacity: 0.7;
+  }
+
+  .prize-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--gold2), var(--gold));
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 15px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    margin-top: 16px;
+    box-shadow: 0 0 30px rgba(245,197,24,0.4), 0 4px 20px rgba(0,0,0,0.4);
+    animation: badgePop 0.8s cubic-bezier(.34,1.56,.64,1) forwards;
+    letter-spacing: 0.5px;
+  }
+  @keyframes badgePop {
+    0% { transform:scale(0.5); opacity:0; }
+    100% { transform:scale(1); opacity:1; }
+  }
+
+  /* ─── COUNTDOWN ─── */
+  .countdown-section {
+    position: relative; z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px;
+    flex-wrap: wrap;
+  }
+  .countdown-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--crimson);
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  .countdown-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 56px;
+    backdrop-filter: blur(4px);
+  }
+  .countdown-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .countdown-unit {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--silver);
+    opacity: 0.6;
+    margin-top: 2px;
+    display: block;
+  }
+  .countdown-sep {
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .tickets-left-bar {
+    position: relative; z-index: 5;
+    text-align: center;
+    padding: 0 16px 16px;
+  }
+  .tickets-left-text {
+    font-size: 12px;
+    color: var(--crimson);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    animation: urgencyPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes urgencyPulse {
+    0%,100%{opacity:1} 50%{opacity:0.6}
+  }
+  .progress-track {
+    background: rgba(255,255,255,0.07);
+    border-radius: 20px;
+    height: 6px;
+    max-width: 320px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--crimson), var(--gold));
+    height: 100%;
+    border-radius: 20px;
+    width: 85%;
+    animation: fillGlow 2s ease-in-out infinite alternate;
+  }
+  @keyframes fillGlow {
+    0%{box-shadow:0 0 6px var(--crimson)} 100%{box-shadow:0 0 14px var(--gold)}
+  }
+
+  /* ─── SECTION TITLE ─── */
+  .section-title {
+    position: relative; z-index: 5;
+    text-align: center;
+    padding: 20px 16px 8px;
+  }
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 4vw, 26px);
+    color: var(--white);
+    font-weight: 700;
+  }
+  .section-title h2 span { color: var(--gold); }
+  .section-title p {
+    font-size: 12px;
+    color: var(--silver);
+    opacity: 0.6;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── TICKET SECTION (Photo Style) ─── */
+  .ticket-section-wrap {
+    position: relative; z-index: 5;
+    padding: 0 14px 100px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .ticket-section-box {
+    background: linear-gradient(145deg, #0d1a3a, #091228);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(245,197,24,0.18),
+      0 20px 60px rgba(0,0,0,0.55),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .ticket-section-header {
+    background: linear-gradient(135deg, #1a0d2e 0%, #0d1630 60%, #16102a 100%);
+    border-bottom: 1px solid rgba(245,197,24,0.2);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ticket-section-header::before {
+    content: '';
+    position: absolute; top: -30px; left: -20px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(245,197,24,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ticket-section-header span {
+    font-size: 20px;
+    filter: drop-shadow(0 0 8px rgba(245,197,24,0.5));
+  }
+  .ticket-section-header h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .ticket-section-header small {
+    font-size: 11px;
+    background: linear-gradient(135deg, rgba(245,197,24,0.18), rgba(245,197,24,0.08));
+    border: 1px solid rgba(245,197,24,0.3);
+    color: #f5c518;
+    font-weight: 700;
+    margin-left: auto;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 0 10px rgba(245,197,24,0.15);
+  }
+
+  .ticket-list-scroll {
+    background: rgba(255,255,255,0.02);
+    max-height: 340px;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    border: 1.5px dashed rgba(245,197,24,0.25);
+    margin: 12px;
+    border-radius: 14px;
+  }
+  .ticket-list-scroll::-webkit-scrollbar { width: 4px; }
+  .ticket-list-scroll::-webkit-scrollbar-track { background: transparent; }
+  .ticket-list-scroll::-webkit-scrollbar-thumb { background: rgba(245,197,24,0.35); border-radius: 4px; }
+
+  .ticket-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.34,1.2,0.64,1);
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .ticket-row::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, rgba(245,197,24,0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .ticket-row:hover {
+    border-color: rgba(245,197,24,0.4);
+    background: rgba(245,197,24,0.06);
+    transform: translateX(2px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2), 0 0 0 1px rgba(245,197,24,0.1);
+  }
+  .ticket-row:hover::before { opacity: 1; }
+  .ticket-row.selected {
+    background: rgba(37,211,102,0.1);
+    border-color: rgba(37,211,102,0.45);
+    transform: translateX(3px);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.2), 0 0 0 1px rgba(37,211,102,0.15), inset 0 0 20px rgba(37,211,102,0.04);
+  }
+  .ticket-row.selected::before {
+    background: linear-gradient(180deg, transparent, #25d366, transparent);
+    opacity: 1;
+  }
+
+  /* custom checkbox */
+  .ticket-checkbox {
+    width: 22px; height: 22px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.22s cubic-bezier(.34,1.56,.64,1);
+    background: rgba(255,255,255,0.04);
+  }
+  .ticket-row.selected .ticket-checkbox {
+    background: #25d366;
+    border-color: #25d366;
+    box-shadow: 0 0 12px rgba(37,211,102,0.45);
+  }
+  .ticket-checkbox svg {
+    width: 12px; height: 12px; fill: white;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.22s cubic-bezier(.34,1.56,.64,1);
+  }
+  .ticket-row.selected .ticket-checkbox svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .ticket-row-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #e8e8f0;
+    letter-spacing: 1.5px;
+    flex: 1;
+    font-feature-settings: "tnum";
+  }
+  .ticket-row.selected .ticket-row-num {
+    color: #25d366;
+    text-shadow: 0 0 10px rgba(37,211,102,0.3);
+  }
+  .ticket-row:hover:not(.selected) .ticket-row-num { color: #f5c518; }
+
+  .ticket-row-price {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(245,197,24,0.6);
+    background: rgba(245,197,24,0.08);
+    border: 1px solid rgba(245,197,24,0.18);
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+  .ticket-row.selected .ticket-row-price {
+    background: rgba(37,211,102,0.12);
+    border-color: rgba(37,211,102,0.3);
+    color: #25d366;
+  }
+
+  /* ─── FAKE POPUP ─── */
+  .fake-popup-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .fake-popup-overlay.show {
+    pointer-events: all;
+    opacity: 1;
+  }
+  .fake-popup-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 340px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: scale(0.5) translateY(60px);
+    transition: transform 0.5s cubic-bezier(.34,1.56,.64,1);
+    position: relative;
+  }
+  .fake-popup-overlay.show .fake-popup-card {
+    transform: scale(1) translateY(0);
+  }
+  .fake-popup-header {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    padding: 22px 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+  .fake-popup-header::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 14px solid #FFA500;
+  }
+  .fake-popup-trophy {
+    font-size: 52px;
+    display: block;
+    animation: trophyBounce 0.7s cubic-bezier(.34,1.56,.64,1) 0.4s both;
+    filter: drop-shadow(0 4px 12px rgba(255,160,0,0.6));
+  }
+  @keyframes trophyBounce {
+    0% { transform: scale(0) rotate(-20deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+  .fake-popup-badge {
+    display: inline-block;
+    background: #e8334a;
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    animation: badgeSlide 0.5s ease 0.6s both;
+  }
+  @keyframes badgeSlide {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .fake-popup-body {
+    padding: 28px 22px 20px;
+    text-align: center;
+  }
+  .fake-popup-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #111;
+    margin-bottom: 8px;
+    animation: fadeUp 0.4s ease 0.5s both;
+  }
+  .fake-popup-msg {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    animation: fadeUp 0.4s ease 0.6s both;
+  }
+  .fake-popup-amount {
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 18px;
+    animation: fadeUp 0.4s ease 0.7s both;
+  }
+  .fake-popup-amount-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+  .fake-popup-amount-val { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #e8334a; }
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .fake-popup-wa-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
+    background: linear-gradient(135deg, #25d366, #128c4a);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    animation: fadeUp 0.4s ease 0.8s both;
+    margin-bottom: 10px;
+  }
+  .fake-popup-wa-btn svg { width: 20px; height: 20px; fill: white; }
+  .fake-popup-close {
+    font-size: 12px;
+    color: #aaa;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    animation: fadeUp 0.4s ease 0.9s both;
+  }
+  .fake-popup-close:hover { color: #555; }
+
+  /* confetti burst for fake popup */
+  .fp-confetti {
+    position: fixed;
+    width: 8px; height: 8px;
+    pointer-events: none;
+    z-index: 3000;
+    animation: fpFall var(--dur) ease-out var(--delay) forwards;
+  }
+  @keyframes fpFall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(80vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ─── STICKY BOTTOM BAR ─── */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(5,10,26,0.95);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(245,197,24,0.2);
+    padding: 14px 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 -4px 40px rgba(245,197,24,0.08);
+  }
+
+  .selection-info {
+    flex: 1;
+  }
+  .selection-count {
+    font-size: 11px;
+    color: var(--silver);
+    opacity: 0.6;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .selection-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.2;
+  }
+  .selection-amount span { font-size: 12px; font-family: 'Inter', sans-serif; font-weight: 500; color: var(--silver); opacity: 0.7; }
+
+  .book-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #25d366, #128c4a);
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .book-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+  }
+  .book-btn:active { transform: scale(0.97); }
+  .book-btn.disabled {
+    background: rgba(255,255,255,0.1);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  /* ─── FLOATING WHATSAPP ─── */
+  .float-wa {
+    position: fixed;
+    bottom: 90px;
+    right: 18px;
+    z-index: 200;
+    width: 56px; height: 56px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    cursor: pointer;
+    text-decoration: none;
+    animation: waFloat 3s ease-in-out infinite;
+    transition: transform 0.2s;
+  }
+  .float-wa:hover { transform: scale(1.12); }
+  @keyframes waFloat {
+    0%,100% { transform: translateY(0) rotate(0deg); box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+    25% { transform: translateY(-6px) rotate(-5deg); box-shadow: 0 10px 30px rgba(37,211,102,0.6); }
+    75% { transform: translateY(-3px) rotate(3deg); box-shadow: 0 7px 25px rgba(37,211,102,0.55); }
+  }
+  .float-wa svg { width: 30px; height: 30px; fill: white; }
+
+  .float-wa-pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37,211,102,0.6);
+    animation: waPulse 1.8s ease-out infinite;
+  }
+  @keyframes waPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  .float-wa-pulse2 {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37,211,102,0.4);
+    animation: waPulse 1.8s ease-out 0.6s infinite;
+  }
+
+  /* ─── POPUP ─── */
+  .popup-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .popup-overlay.active { opacity: 1; pointer-events: all; }
+
+  .popup-card {
+    background: linear-gradient(135deg, #0d1630, #0a1128);
+    border: 1px solid rgba(245,197,24,0.3);
+    border-radius: 24px;
+    padding: 32px 24px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.6), 0 0 40px rgba(245,197,24,0.1);
+    transform: scale(0.7) translateY(40px);
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+    position: relative;
+  }
+  .popup-overlay.active .popup-card {
+    transform: scale(1) translateY(0);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 14px; right: 16px;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: var(--silver);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .popup-close:hover { background: rgba(255,255,255,0.15); }
+
+  .popup-icon { font-size: 48px; display: block; margin-bottom: 12px; animation: popupIconBounce 0.6s cubic-bezier(.34,1.56,.64,1) 0.3s both; }
+  @keyframes popupIconBounce {
+    0%{transform:scale(0) rotate(-180deg)} 100%{transform:scale(1) rotate(0deg)}
+  }
+
+  .popup-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .popup-subtitle {
+    font-size: 13px;
+    color: var(--silver);
+    opacity: 0.7;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .popup-ticket-list {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 20px;
+    max-height: 160px;
+    overflow-y: auto;
+    text-align: left;
+  }
+  .popup-ticket-list::-webkit-scrollbar { width: 4px; }
+  .popup-ticket-list::-webkit-scrollbar-track { background: transparent; }
+  .popup-ticket-list::-webkit-scrollbar-thumb { background: rgba(245,197,24,0.3); border-radius: 4px; }
+
+  .popup-ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 13px;
+  }
+  .popup-ticket-item:last-child { border-bottom: none; }
+  .popup-ticket-item .t-num { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--gold); }
+  .popup-ticket-item .t-price { color: var(--silver); opacity: 0.6; }
+
+  .popup-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid rgba(245,197,24,0.2);
+    margin-bottom: 20px;
+  }
+  .popup-total-label { font-size: 13px; color: var(--silver); font-weight: 600; }
+  .popup-total-amount { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--gold); }
+
+  .popup-wa-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, #25d366, #128c4a);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .popup-wa-btn:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(37,211,102,0.55); }
+  .popup-wa-btn svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+
+  /* ─── CONFETTI ─── */
+  .confetti-piece {
+    position: fixed;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confettiFall var(--dur, 1.2s) ease-out var(--delay, 0s) forwards;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg) scale(0.3); opacity: 0; }
+  }
+
+  /* ─── TRUST STRIP ─── */
+  .trust-strip {
+    position: relative; z-index: 5;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 14px 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--silver); opacity: 0.55;
+    letter-spacing: 0.5px;
+  }
+  .trust-item span { font-size: 14px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:420px){
+    .ticket-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px 10px 100px; }
+    .ticket-card { padding: 12px 6px 10px; }
+    .ticket-number { font-size: 12px; }
+  }
+
+  /* ─── SOCIAL PROOF NOTIFICATIONS ─── */
+  .social-notif-container {
+    position: fixed;
+    bottom: 90px; left: 10px;
+    z-index: 500;
+    display: flex; flex-direction: column-reverse; gap: 8px;
+    pointer-events: none;
+  }
+  .social-notif {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, rgba(10,18,42,0.97), rgba(8,14,34,0.97));
+    border: 1px solid rgba(245,197,24,0.25);
+    border-radius: 14px;
+    padding: 10px 12px 10px 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,197,24,0.07);
+    backdrop-filter: blur(14px);
+    max-width: 260px;
+    transform: translateX(-120%);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.34,1.2,0.64,1), opacity 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .social-notif::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(180deg, #f5c518, #e6a800);
+    border-radius: 14px 0 0 14px;
+  }
+  .social-notif.visible { transform: translateX(0); opacity: 1; }
+  .social-notif.hiding {
+    transform: translateX(-120%); opacity: 0;
+    transition: transform 0.35s ease-in, opacity 0.3s ease-in;
+  }
+  .notif-avatar {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #f5c518, #e6a800);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 900; color: #0a0a00;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(245,197,24,0.3);
+  }
+  .notif-body { flex: 1; min-width: 0; }
+  .notif-name { font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .notif-text { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; line-height: 1.3; }
+  .notif-ticket-num { font-weight: 700; color: #f5c518; }
+  .notif-booked { font-size: 10px; color: #25d366; font-weight: 600; margin-top: 3px; }
+
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<!-- HEADER RIBBON -->
+<div class="header-ribbon">🔴 Live Draw — Limited Tickets Available</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-main">
+    <span class="crown-icon">👑</span>
+    <h1 class="site-title">Kerala Mega Jackpot</h1>
+    <p class="site-subtitle">Official Government Lottery · Trusted Since 1967</p>
+    <div class="prize-badge">🏆 First Prize ₹25 Crore</div>
+  </div>
+</header>
+
+<!-- COUNTDOWN -->
+<div class="countdown-section">
+  <span class="countdown-label">⏱ Draw closes in</span>
+  <div class="countdown-box"><span class="countdown-num" id="cd-h">09</span><span class="countdown-unit">Hours</span></div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-box"><span class="countdown-num" id="cd-m">47</span><span class="countdown-unit">Mins</span></div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-box"><span class="countdown-num" id="cd-s">33</span><span class="countdown-unit">Secs</span></div>
+</div>
+
+<!-- PROGRESS -->
+<div class="tickets-left-bar">
+  <div class="tickets-left-text">🔥 Only <span id="tickets-left-num">78</span> VIP Tickets Remaining!</div>
+  <div class="progress-track"><div class="progress-fill"></div></div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><span>🔒</span> 100% Secure</div>
+  <div class="trust-item"><span>✅</span> Govt Certified</div>
+  <div class="trust-item"><span>⚡</span> Instant Booking</div>
+  <div class="trust-item"><span>💬</span> WhatsApp Support</div>
+</div>
+
+<!-- SECTION TITLE -->
+<div class="section-title">
+  <h2>Select Your <span>Lucky Tickets</span></h2>
+  <p>Tap to select · ₹40 per ticket · Multiple selections allowed</p>
+</div>
+
+<!-- TICKET SECTION (Photo Style) -->
+<div class="ticket-section-wrap">
+  <div class="ticket-section-box">
+    <div class="ticket-section-header">
+      <span>🎫</span>
+      <h3>Select Tickets (₹40 each)</h3>
+      <small id="sel-count-top">0 selected</small>
+    </div>
+    <div class="ticket-list-scroll" id="ticketGrid"></div>
+  </div>
+</div>
+
+<!-- STICKY BOTTOM BAR -->
+<div class="bottom-bar">
+  <div class="selection-info">
+    <div class="selection-count" id="sel-count">0 tickets selected</div>
+    <div class="selection-amount" id="sel-amount">₹0 <span>total</span></div>
+  </div>
+  <a href="#" class="book-btn disabled" id="bookBtn" onclick="openPopup(event)">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Book on WhatsApp
+  </a>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a class="float-wa" href="#" id="floatWaBtn" onclick="openPopup(event)" title="Book on WhatsApp">
+  <div class="float-wa-pulse"></div>
+  <div class="float-wa-pulse2"></div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- FAKE BOOKING POPUP -->
+<div class="fake-popup-overlay" id="fakePopupOverlay">
+  <div class="fake-popup-card">
+    <div class="fake-popup-header">
+      <span class="fake-popup-trophy">🏆</span>
+      <div class="fake-popup-badge">🎉 Tickets Reserved!</div>
+    </div>
+    <div class="fake-popup-body">
+      <div class="fake-popup-title">Your Booking is Ready!</div>
+      <div class="fake-popup-msg">
+        You've selected <strong id="fp-count">0</strong> lucky ticket(s).<br>
+        Complete your booking on WhatsApp now!
+      </div>
+      <div class="fake-popup-amount">
+        <div class="fake-popup-amount-label">Total Payable</div>
+        <div class="fake-popup-amount-val" id="fp-total">₹0</div>
+      </div>
+      <a href="#" class="fake-popup-wa-btn" id="fpWaBtn">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Confirm on WhatsApp
+      </a>
+      <button class="fake-popup-close" onclick="closeFakePopup()">✕ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-card">
+    <button class="popup-close" onclick="closePopup()">✕</button>
+    <span class="popup-icon">🎟️</span>
+    <div class="popup-title">Your Lucky Tickets</div>
+    <div class="popup-subtitle">Review your selection and proceed to book via WhatsApp</div>
+    <div class="popup-ticket-list" id="popupTicketList"></div>
+    <div class="popup-total">
+      <span class="popup-total-label">Total Amount</span>
+      <span class="popup-total-amount" id="popupTotal">₹0</span>
+    </div>
+    <a href="#" class="popup-wa-btn" id="popupWaBtn">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Confirm & Book on WhatsApp
+    </a>
+  </div>
+</div>
+
+<script>
+// ─── TICKET DATA ───
+const TICKETS = [
+"KL654164","KL454145","KL515484","KL541455","KL235195","KL444560","KL255032","KL416502","KL350605","KL352655",
+"KL326023","KL292592","KL652655","KL352655","KL656255","KL352659","KL362255","KL985563","KL473369","KL785542",
+"KL364421","KL012243","KL525928","KL989822","KL598298","KL774455","KL855336","KL987746","KL021443","KL656256",
+"KL562565","KL656256","KL662559","KL214446","KL587854","KL565366","KL562565","KL878899","KL333333","KL111111",
+"KL000000","KL222222","KL777777","KL888888","KL444444","KL555555","KL666666","KL444444","KL999999","KL977233",
+"KL893336","KL697245","KL987336","KL654412","KL654785","KL465923","KL416371","KL461545","KL541441","KL647671",
+"KL242626","KL262652","KL266565","KL540450","KL525228","KL572757","KL722755","KL638666","KL668885","KL227272",
+"KL657955","KL555888","KL545454","KL288988","KL517874","KL451444","KL878689","KL652971","KL891898","KL877796",
+"KL897991","KL989995","KL562595","KL997175","KL998292","KL898928","KL999891","KLK65959","KL999595","KL541654",
+"KL546545","KL365478","KL754826","KL321478","KL321587","KL247558","KL782145","KL985476","KL357896","KL784512",
+"KL125478","KL985623","KL654789","KL123654","KL789632","KL456258","KL745632","KL569874","KL525252","KL363636",
+"KL969696","KL265478","KL687459","KL879563","KL933255","KL785447","KL554875","KL366599","KL215626","KL541988",
+"KL516547","KL648678","KL416871","KL514861","KL652681","KL541878","KL325498","KL359688","KL538771","KL241688",
+"KL241867","KL251895","KL539886","KL571867","KL325985","KL596867","KL518778","KL479678","KL658698","KL265697",
+"KL489772","KL254867","KL519717","KL555555","KL654955","KL256187","KL233248","KL877718","KL657897","KL418711",
+"KL987820","KL987841","KL987862","KL987876","KL987102","KL987123","KL987821","KL987842","KL987863","KL987883",
+"KL987103","KL987124","KL248918","KL074252","KL949345","KL716637","KL332233","KL912802","KL675249","KL817262",
+"KL479630","KL944274","KL618322","KL454216","KL161202","KL526324","KL614273","KL267082","KL295421","KL779849",
+"KL866288","KL733394","KL539300","KL535058","KL963831","KL405610","KL510248","KL227836","KL620329","KL980329",
+"KL980776","KL903622","KL215010","KL125867","KL126579","KL858867","KL100019","KL130416","KL108989","KL301618",
+"KL936178","KL313773","KL043173","KL007720","KL179267","KL285336","KL595703","KL460391","KL429687","KL276047",
+"KL623396","KL439060","KL304859","KL984451","KL471471","KL864614","KL139614","KL968058","KL134215","KL359431",
+"KL529865","KL040333","KL173463","KL635378","KL394181","KL711816","KL933251","KL417346","KL309256","KL879531",
+"KL986991","KL741924","KL717542","KL302333","KL361982","KL065418","KL741924","KL971935","KL086630","KL173463",
+"KL169326","KL721371","KL195325","KL897240","KL251586","KL171371","KL103827","KL205827","KL538576","KL204815",
+"KL708641","KL592546","KL601942","KL254619","KL681320","KL407395","KL631725","KL681372","KL695210","KL109578",
+"KL631725","KL513947","KL789523","KL542980","KL101299","KL267658","KL705178","KL275232","KL579462","KL208627",
+"KL175920","KL175929","KL649230","KL894178","KL129423","KL108428","KL101265","KL102340","KL172866","KL272899",
+"KL162510","KL541759","KL290815","KL276501","KL540814","KL158279","KL203174","KL109578","KL307645","KL542378",
+"KL224398","KL554870","KL356416","KL541367","KL615289","KL266544","KL989898","KL985265","KL556255","KL545177",
+"KL817979","KL629898"
+];
+
+const PRICE = 40;
+const WA_NUMBER = "919296845372";
+let selected = new Set();
+
+// ─── BUILD TICKET LIST (Photo Style) ───
+(function buildGrid() {
+  const grid = document.getElementById('ticketGrid');
+  TICKETS.forEach((num, i) => {
+    const row = document.createElement('div');
+    row.className = 'ticket-row';
+    row.dataset.ticket = num.replace(/\s/g,'');
+    row.innerHTML = `
+      <div class="ticket-checkbox">
+        <svg viewBox="0 0 12 10"><polyline points="1,5 4,8.5 11,1" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="ticket-row-num">${num.trim()}</div>
+      <div class="ticket-row-price">₹${PRICE}</div>
+    `;
+    row.addEventListener('click', () => toggleTicket(row, num.replace(/\s/g,'')));
+    grid.appendChild(row);
+  });
+})();
+
+// ─── TOGGLE TICKET ───
+function toggleTicket(card, num) {
+  if (selected.has(num)) {
+    selected.delete(num);
+    card.classList.remove('selected');
+  } else {
+    selected.add(num);
+    card.classList.add('selected');
+    spawnConfetti(card);
+  }
+  updateBar();
+}
+
+// ─── UPDATE BOTTOM BAR ───
+function updateBar() {
+  const count = selected.size;
+  const total = count * PRICE;
+  document.getElementById('sel-count').textContent = count + ' ticket' + (count !== 1 ? 's' : '') + ' selected';
+  document.getElementById('sel-amount').innerHTML = `₹${total} <span>total</span>`;
+  document.getElementById('sel-count-top').textContent = count + ' selected';
+  const btn = document.getElementById('bookBtn');
+  if (count > 0) {
+    btn.classList.remove('disabled');
+  } else {
+    btn.classList.add('disabled');
+  }
+}
+
+// ─── OPEN FAKE POPUP (for float WA + book btn) ───
+function openPopup(e) {
+  e.preventDefault();
+  if (selected.size === 0) return;
+  const count = selected.size;
+  const total = count * PRICE;
+  document.getElementById('fp-count').textContent = count;
+  document.getElementById('fp-total').textContent = '₹' + total;
+  const msg = `Hello! I want to book Kerala Mega Jackpot tickets.\n\nTickets:\n${[...selected].join('\n')}\n\nTotal: ₹${total} (${count} ticket${count>1?'s':''})\n\nPlease confirm my booking! 🎟️`;
+  document.getElementById('fpWaBtn').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  document.getElementById('fakePopupOverlay').classList.add('show');
+  spawnFakePopupConfetti();
+
+  // Also update old popup (keep for reference)
+  const list = document.getElementById('popupTicketList');
+  list.innerHTML = '';
+  selected.forEach(num => {
+    const item = document.createElement('div');
+    item.className = 'popup-ticket-item';
+    item.innerHTML = `<span class="t-num">🎟 ${num}</span><span class="t-price">₹${PRICE}</span>`;
+    list.appendChild(item);
+  });
+  document.getElementById('popupTotal').textContent = '₹' + total;
+  document.getElementById('popupWaBtn').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+// ─── CLOSE FAKE POPUP ───
+function closeFakePopup() {
+  document.getElementById('fakePopupOverlay').classList.remove('show');
+}
+document.getElementById('fakePopupOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeFakePopup();
+});
+
+// ─── FAKE POPUP CONFETTI ───
+function spawnFakePopupConfetti() {
+  const colors = ['#FFD700','#e8334a','#25d366','#ffffff','#7c3aed','#FFA500'];
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement('div');
+    c.className = 'fp-confetti';
+    c.style.cssText = `
+      left:${10 + Math.random()*80}vw;
+      top:-10px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      width:${6+Math.random()*8}px; height:${6+Math.random()*8}px;
+      border-radius:${Math.random()>0.5?'50%':'3px'};
+      transform:rotate(${Math.random()*360}deg);
+      --dur:${1+Math.random()*1.5}s;
+      --delay:${Math.random()*0.5}s;
+    `;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 2500);
+  }
+}
+
+// ─── CONFETTI ───
+function spawnConfetti(el) {
+  const colors = ['#f5c518','#e8334a','#25d366','#ffffff','#7c3aed'];
+  const rect = el.getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+  for (let i = 0; i < 10; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `
+      left:${cx + (Math.random()-0.5)*40}px;
+      top:${cy}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      transform:rotate(${Math.random()*360}deg);
+      --dur:${0.8+Math.random()*0.6}s;
+      --delay:${Math.random()*0.2}s;
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+    `;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 1400);
+  }
+}
+
+// ─── COUNTDOWN ───
+(function countdown() {
+  let secs = 9*3600 + 47*60 + 33;
+  function tick() {
+    const h = Math.floor(secs/3600);
+    const m = Math.floor((secs%3600)/60);
+    const s = secs%60;
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+    if (secs > 0) { secs--; setTimeout(tick, 1000); }
+  }
+  tick();
+})();
+
+// ─── TICKETS LEFT COUNTER ───
+(function ticketsLeft() {
+  let left = 78;
+  function drop() {
+    if (left > 12) {
+      left -= Math.floor(Math.random()*2) + 1;
+      document.getElementById('tickets-left-num').textContent = left;
+    }
+    setTimeout(drop, 8000 + Math.random()*10000);
+  }
+  setTimeout(drop, 12000);
+})();
+
+// ═══════════════════════════════════
+// SOCIAL PROOF NOTIFICATION SYSTEM
+// ═══════════════════════════════════
+const NOTIF_NAMES = [
+  'Devraj','Rahul','Amit','Suresh','Priya','Anjali','Vikram','Deepak','Sunita','Rajesh',
+  'Meena','Kavita','Arjun','Pooja','Sanjay','Nisha','Manoj','Ravi','Harish','Sneha',
+  'Dinesh','Rekha','Vinod','Anil','Seema','Mohan','Anita','Pankaj','Kiran','Ajay',
+  'Rohit','Swati','Vikas','Suman','Ashok','Neha','Gaurav','Preeti','Ramesh','Shilpa'
+];
+const NOTIF_CITIES = [
+  'Delhi','Mumbai','Jaipur','Bangalore','Chennai','Hyderabad','Kolkata','Pune',
+  'Lucknow','Ahmedabad','Surat','Nagpur','Patna','Indore','Bhopal','Chandigarh',
+  'Kanpur','Coimbatore','Agra','Vadodara','Ludhiana','Nashik','Kochi','Mysore',
+  'Gurgaon','Noida','Faridabad','Meerut','Varanasi','Jodhpur'
+];
+
+function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function rndTicket() { return TICKETS[Math.floor(Math.random() * TICKETS.length)].trim(); }
+function rndMins() { const m=[1,2,3,5,7,10,12,15]; const v=rnd(m); return v===1?'Just now':v+'m ago'; }
+
+function showSocialNotif() {
+  const name = rnd(NOTIF_NAMES);
+  const city = rnd(NOTIF_CITIES);
+  const ticket = rndTicket();
+  const time = rndMins();
+  const count = Math.random() > 0.65 ? Math.floor(Math.random()*3)+2 : 1;
+  const text = count > 1
+    ? `booked ${count} tickets · <span class="notif-ticket-num">#${ticket}</span>`
+    : `just booked <span class="notif-ticket-num">#${ticket}</span>`;
+
+  const el = document.createElement('div');
+  el.className = 'social-notif';
+  el.innerHTML = `
+    <div class="notif-avatar">${name[0]}</div>
+    <div class="notif-body">
+      <div class="notif-name">${name} · ${city}</div>
+      <div class="notif-text">${text}</div>
+      <div class="notif-booked">✓ Booking Confirmed · ${time}</div>
+    </div>
+  `;
+  document.getElementById('socialNotifContainer').appendChild(el);
+
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('visible')));
+
+  setTimeout(() => {
+    el.classList.remove('visible');
+    el.classList.add('hiding');
+    setTimeout(() => el.remove(), 400);
+  }, 4200);
+}
+
+function scheduleNotifs() {
+  const delay = 5000 + Math.random() * 5000;
+  setTimeout(() => { showSocialNotif(); scheduleNotifs(); }, delay);
+}
+setTimeout(() => { showSocialNotif(); scheduleNotifs(); }, 2500);
+
+</script>
+
+<!-- SOCIAL PROOF NOTIFICATIONS -->
+<div class="social-notif-container" id="socialNotifContainer"></div>
+
+</body>
+</html>
