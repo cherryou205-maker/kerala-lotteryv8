@@ -872,6 +872,17 @@
   .notif-ticket-num { font-weight: 700; color: #f5c518; }
   .notif-booked { font-size: 10px; color: #25d366; font-weight: 600; margin-top: 3px; }
 
+  .min-required-box{
+    margin:10px 0 15px;
+    padding:12px;
+    text-align:center;
+    border-radius:12px;
+    background:rgba(255,193,7,0.12);
+    border:1px solid rgba(255,193,7,0.4);
+    color:#ffc107;
+    font-weight:700;
+    font-size:14px;
+  }
 </style>
 </head>
 <body>
@@ -928,6 +939,9 @@
       <span>🎫</span>
       <h3>Select Tickets (₹40 each)</h3>
       <small id="sel-count-top">0 selected</small>
+      <div class="min-required-box">
+   ⚠️ Min. 3 Required
+      </div>
     </div>
     <div class="ticket-list-scroll" id="ticketGrid"></div>
   </div>
@@ -1077,7 +1091,7 @@ function updateBar() {
   document.getElementById('sel-amount').innerHTML = `₹${total} <span>total</span>`;
   document.getElementById('sel-count-top').textContent = count + ' selected';
   const btn = document.getElementById('bookBtn');
-  if (count > 0) {
+  if (count >= 3) {
     btn.classList.remove('disabled');
   } else {
     btn.classList.add('disabled');
@@ -1087,7 +1101,10 @@ function updateBar() {
 // ─── OPEN FAKE POPUP (for float WA + book btn) ───
 function openPopup(e) {
   e.preventDefault();
-  if (selected.size === 0) return;
+  if (selected.size < 3) {
+   alert("Please select minimum 3 tickets");
+   return;
+  }
   const count = selected.size;
   const total = count * PRICE;
   document.getElementById('fp-count').textContent = count;
