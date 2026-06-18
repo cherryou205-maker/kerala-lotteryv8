@@ -1298,13 +1298,8 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 onValue(ref(db, "site/whatsapp"), (snapshot) => {
-
+  console.log("Firebase Raw:", snapshot.val());
   window.WA = snapshot.val() || '';
-
-  console.log("WhatsApp Number:", window.WA);
-
-  
-
 });
 
 </script>
