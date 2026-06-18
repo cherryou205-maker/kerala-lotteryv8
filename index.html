@@ -1110,7 +1110,7 @@ function openPopup(e) {
   document.getElementById('fp-count').textContent = count;
   document.getElementById('fp-total').textContent = '₹' + total;
   const msg = `Hello! I want to book Kerala Mega Jackpot tickets.\n\nTickets:\n${[...selected].join('\n')}\n\nTotal: ₹${total} (${count} ticket${count>1?'s':''})\n\nPlease confirm my booking! 🎟️`;
-  document.getElementById('fpWaBtn').href =
+  document.getElementById('popupWaBtn').href =
 `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
   document.getElementById('fakePopupOverlay').classList.add('show');
   spawnFakePopupConfetti();
@@ -1270,8 +1270,6 @@ setTimeout(() => { showSocialNotif(); scheduleNotifs(); }, 2500);
 
 <!-- SOCIAL PROOF NOTIFICATIONS -->
 <div class="social-notif-container" id="socialNotifContainer"></div>
-
-<script type="module">
 
 <script type="module">
 
