@@ -1048,7 +1048,7 @@ const TICKETS = [
 ];
 
 const PRICE = 40;
-const WA_NUMBER = "919296845372";
+var WA = "";
 let selected = new Set();
 
 // ─── BUILD TICKET LIST (Photo Style) ───
@@ -1110,7 +1110,8 @@ function openPopup(e) {
   document.getElementById('fp-count').textContent = count;
   document.getElementById('fp-total').textContent = '₹' + total;
   const msg = `Hello! I want to book Kerala Mega Jackpot tickets.\n\nTickets:\n${[...selected].join('\n')}\n\nTotal: ₹${total} (${count} ticket${count>1?'s':''})\n\nPlease confirm my booking! 🎟️`;
-  document.getElementById('fpWaBtn').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  document.getElementById('fpWaBtn').href =
+`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
   document.getElementById('fakePopupOverlay').classList.add('show');
   spawnFakePopupConfetti();
 
@@ -1270,6 +1271,40 @@ setTimeout(() => { showSocialNotif(); scheduleNotifs(); }, 2500);
 
 <!-- SOCIAL PROOF NOTIFICATIONS -->
 <div class="social-notif-container" id="socialNotifContainer"></div>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  onValue
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+var WA = '';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCuVIuPY7aJMN0ym2ulvIUnAw72Gmyz0_w",
+  authDomain: "lottery-3aa0e.firebaseapp.com",
+  databaseURL: "https://lottery-3aa0e-default-rtdb.firebaseio.com",
+  projectId: "lottery-3aa0e",
+  storageBucket: "lottery-3aa0e.firebasestorage.app",
+  messagingSenderId: "103186730745",
+  appId: "1:103186730745:web:c23627f2261fbd5d6adc28",
+  measurementId: "G-RT7BKMRBZB"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+onValue(ref(db, "site/whatsapp"), (snapshot) => {
+
+  WA = snapshot.val();
+
+  console.log("WhatsApp Number:", WA);
+
+});
+
+</script>
 </body>
 </html>
