@@ -3,59 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lottery Admin Dashboard</title>
+<title>Lottery Admin Panel</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:Segoe UI,Arial,sans-serif;
 }
 
 body{
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+background:linear-gradient(135deg,#0f172a,#1e293b);
 padding:20px;
 }
 
 .card{
 width:100%;
 max-width:420px;
-background:#ffffff;
-border-radius:24px;
-padding:35px;
-box-shadow:0 25px 60px rgba(0,0,0,.25);
+background:#fff;
+border-radius:20px;
+padding:30px;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
 }
 
 .logo{
-width:70px;
-height:70px;
-border-radius:18px;
-background:#22c55e;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:32px;
-margin:auto;
-color:#fff;
+text-align:center;
+font-size:42px;
+margin-bottom:10px;
 }
 
-h1{
+h2{
 text-align:center;
-font-size:26px;
-margin-top:15px;
+margin-bottom:8px;
 color:#111827;
 }
 
 .sub{
 text-align:center;
 color:#6b7280;
-margin-top:6px;
 margin-bottom:25px;
 font-size:14px;
 }
@@ -65,23 +55,17 @@ width:100%;
 padding:14px;
 border:1px solid #d1d5db;
 border-radius:12px;
-outline:none;
+margin-bottom:12px;
 font-size:15px;
-margin-top:12px;
-}
-
-input:focus{
-border-color:#22c55e;
 }
 
 button{
 width:100%;
 padding:14px;
-margin-top:15px;
 border:none;
 border-radius:12px;
 background:#22c55e;
-color:white;
+color:#fff;
 font-size:16px;
 font-weight:600;
 cursor:pointer;
@@ -95,30 +79,19 @@ opacity:.95;
 display:none;
 }
 
-.success{
+.msg{
 margin-top:15px;
-padding:12px;
-background:#dcfce7;
-color:#166534;
-border-radius:10px;
 text-align:center;
 font-size:14px;
+}
+
+.success{
+color:#16a34a;
 }
 
 .error{
-margin-top:12px;
-color:red;
-text-align:center;
-font-size:14px;
+color:#dc2626;
 }
-
-.badge{
-margin-top:18px;
-text-align:center;
-color:#6b7280;
-font-size:13px;
-}
-
 </style>
 </head>
 
@@ -128,30 +101,24 @@ font-size:13px;
 
 <div class="logo">⚙️</div>
 
-<h1>Admin Dashboard</h1>
+<h2>Admin Dashboard</h2>
 
-<div class="sub">
-Lottery WhatsApp Control Panel
-</div>
-
-<!-- LOGIN -->
+<div class="sub">WhatsApp Number Control Panel</div>
 
 <div id="loginBox">
 
 <input
 type="password"
 id="password"
-placeholder="Enter Admin Password">
+placeholder="Enter Password">
 
 <button onclick="login()">
 Login
 </button>
 
-<div id="error" class="error"></div>
+<div id="loginMsg" class="msg"></div>
 
 </div>
-
-<!-- PANEL -->
 
 <div id="adminPanel">
 
@@ -161,14 +128,10 @@ id="wa"
 placeholder="Enter WhatsApp Number">
 
 <button onclick="saveWA()">
-Update WhatsApp Number
+Update Number
 </button>
 
-<div id="msg"></div>
-
-<div class="badge">
-Secure Control Panel
-</div>
+<div id="saveMsg" class="msg"></div>
 
 </div>
 
@@ -176,32 +139,30 @@ Secure Control Panel
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 getDatabase,
 ref,
 set
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 
-apiKey: "YOUR_API_KEY",
-authDomain: "YOUR_AUTH_DOMAIN",
-databaseURL: "YOUR_DATABASE_URL",
-projectId: "YOUR_PROJECT_ID",
-storageBucket: "YOUR_STORAGE_BUCKET",
-messagingSenderId: "YOUR_SENDER_ID",
-appId: "YOUR_APP_ID"
+apiKey: "AIzaSyCuVIuPY7aJMN0ym2ulvIUnAw72Gmyz0_w",
+authDomain: "lottery-3aa0e.firebaseapp.com",
+databaseURL: "https://lottery-3aa0e-default-rtdb.firebaseio.com",
+projectId: "lottery-3aa0e",
+storageBucket: "lottery-3aa0e.firebasestorage.app",
+messagingSenderId: "103186730745",
+appId: "1:103186730745:web:c23627f2261fbd5d6adc28"
 
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const ADMIN_PASSWORD = "12345";
+const PASSWORD = "12345";
 
 window.login = function(){
 
@@ -210,7 +171,7 @@ document.getElementById("password")
 .value
 .trim();
 
-if(pass === ADMIN_PASSWORD){
+if(pass === PASSWORD){
 
 document.getElementById("loginBox")
 .style.display = "none";
@@ -220,8 +181,9 @@ document.getElementById("adminPanel")
 
 }else{
 
-document.getElementById("error")
-.innerHTML = "Wrong Password";
+document.getElementById("loginMsg")
+.innerHTML =
+'<span class="error">Wrong Password</span>';
 
 }
 
@@ -249,9 +211,9 @@ number
 
 .then(()=>{
 
-document.getElementById("msg")
+document.getElementById("saveMsg")
 .innerHTML =
-'<div class="success">WhatsApp Number Updated Successfully</div>';
+'<span class="success">WhatsApp Number Updated Successfully</span>';
 
 })
 
