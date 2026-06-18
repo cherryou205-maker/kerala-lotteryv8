@@ -1125,7 +1125,8 @@ function openPopup(e) {
     list.appendChild(item);
   });
   document.getElementById('popupTotal').textContent = '₹' + total;
-  document.getElementById('popupWaBtn').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  document.getElementById('popupWaBtn').href =
+`https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
 }
 
 // ─── CLOSE FAKE POPUP ───
@@ -1298,7 +1299,7 @@ onValue(ref(db, "site/whatsapp"), (snapshot) => {
 
   console.log("WhatsApp Number:", window.WA);
 
-  alert("Loaded Number: " + window.WA);
+  
 
 });
 
