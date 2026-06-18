@@ -1111,7 +1111,7 @@ function openPopup(e) {
   document.getElementById('fp-total').textContent = '₹' + total;
   const msg = `Hello! I want to book Kerala Mega Jackpot tickets.\n\nTickets:\n${[...selected].join('\n')}\n\nTotal: ₹${total} (${count} ticket${count>1?'s':''})\n\nPlease confirm my booking! 🎟️`;
   document.getElementById('fpWaBtn').href =
-`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+`https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
   document.getElementById('fakePopupOverlay').classList.add('show');
   spawnFakePopupConfetti();
 
@@ -1267,10 +1267,6 @@ function scheduleNotifs() {
 }
 setTimeout(() => { showSocialNotif(); scheduleNotifs(); }, 2500);
 
-</script>
-
-<!-- SOCIAL PROOF NOTIFICATIONS -->
-<div class="social-notif-container" id="socialNotifContainer"></div>
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -1281,7 +1277,7 @@ import {
   onValue
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-var WA = '';
+window.WA = '';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCuVIuPY7aJMN0ym2ulvIUnAw72Gmyz0_w",
@@ -1299,9 +1295,9 @@ const db = getDatabase(app);
 
 onValue(ref(db, "site/whatsapp"), (snapshot) => {
 
-  WA = snapshot.val();
+  window.WA = snapshot.val() || '';
 
-  console.log("WhatsApp Number:", WA);
+  console.log("WhatsApp Number:", window.WA);
 
 });
 
