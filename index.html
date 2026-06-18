@@ -1112,7 +1112,7 @@ function openPopup(e) {
   const msg = `Hello! I want to book Kerala Mega Jackpot tickets.\n\nTickets:\n${[...selected].join('\n')}\n\nTotal: ₹${total} (${count} ticket${count>1?'s':''})\n\nPlease confirm my booking! 🎟️`;
   console.log("WA Number:", window.WA);
 console.log("Button Found:", document.getElementById('popupWaBtn'));
-  document.getElementById('popupWaBtn').href =
+  document.getElementById('fpWaBtn').href =
 `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
   document.getElementById('fakePopupOverlay').classList.add('show');
   spawnFakePopupConfetti();
@@ -1129,7 +1129,7 @@ console.log("Button Found:", document.getElementById('popupWaBtn'));
   document.getElementById('popupTotal').textContent = '₹' + total;
   console.log("WA Number:", window.WA);
 console.log("Button Found:", document.getElementById('popupWaBtn'));
-  document.getElementById('popupWaBtn').href =
+  document.getElementById('fpWaBtn').href =
 `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
 }
 
