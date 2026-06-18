@@ -1048,7 +1048,7 @@ const TICKETS = [
 ];
 
 const PRICE = 40;
-var WA = "";
+window.WA = "";
 let selected = new Set();
 
 // ─── BUILD TICKET LIST (Photo Style) ───
@@ -1276,12 +1276,7 @@ setTimeout(() => { showSocialNotif(); scheduleNotifs(); }, 2500);
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-  getDatabase,
-  ref,
-  onValue
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 window.WA = '';
 
@@ -1304,6 +1299,8 @@ onValue(ref(db, "site/whatsapp"), (snapshot) => {
   window.WA = snapshot.val() || '';
 
   console.log("WhatsApp Number:", window.WA);
+
+  alert("Loaded Number: " + window.WA);
 
 });
 
