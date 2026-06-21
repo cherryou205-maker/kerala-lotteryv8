@@ -1302,6 +1302,13 @@ onValue(ref(db, "site/whatsapp"), (snapshot) => {
   window.WA = snapshot.val() || '';
 });
 
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.querySelector(".ticket-section-wrap")
+      .scrollIntoView({ behavior: "smooth" });
+  }, 300);
+});
+
 </script>
 </body>
 </html>
